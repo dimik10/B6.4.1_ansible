@@ -1,0 +1,18 @@
+---
+#Плейбук устанавливает mariadb сервер и клиента, а так же запускает mariaDB сервер бд.
+- hosts: localhost
+  become: yes
+
+  tasks:
+      - name: Install MariaDB Server
+        apt:
+          pkg:
+            - mariadb-server
+            - mariadb-client
+          state: latest
+
+      - name: start MariaDB
+        ansible.builtin.service:
+          name: mysql
+          state: started
+
